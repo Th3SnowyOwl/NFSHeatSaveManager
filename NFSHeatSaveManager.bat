@@ -38,6 +38,7 @@ set progpath=%userprofile%\Documents\NFSHEATSAVEMANAGER
 set gamepath=%userprofile%\Documents\Need For Speed Heat\SaveGame
 cd %userprofile%\Documents\
 if not exist "%progpath%" mkdir "%progpath%"
+if not exist "%progpath%\backups\" mkdir "%progpath%\backups\"
 cls
 echo Need For Speed Heat Save Manager
 echo By "github.com/Th3SnowyOwl"
@@ -53,6 +54,8 @@ mkdir "%progpath%\%savename%"
 cd "%progpath%"
 move "%gamepath%\savegame" "%progpath%\%savename%\"
 move "%gamepath%\wraps" "%progpath%\%savename%\"
+if not exist "%progpath%\backups\%savename%" mkdir "%progpath%\backups\%savename%"
+robocopy "%progpath%\%savename% " "%progpath%\backups\%savename% " /E
 cls
 :load
 set /p load="Would you like to load a game? Y/N :"
